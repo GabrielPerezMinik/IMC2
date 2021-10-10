@@ -1,7 +1,5 @@
 package imc;
 
-import java.security.DrbgParameters.Reseed;
-
 import javafx.application.Application;
 import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
@@ -32,11 +30,12 @@ public class IMC extends Application {
 		
 		
 		Label clasificacionLabel = new Label();
-		clasificacionLabel.setText("hi");
-		//clasificacionLabel.se;
+		
+		
 		
 		Label estadoLabel = new Label();
 		clasificacionLabel.setText("2");
+		
 		Label pesoLabel;
 		HBox pesoHbox = new HBox(pesoLabel = new Label("Peso "), pesoTextField = new TextField(), pesoLabel = new Label("kg"));
         pesoHbox.setAlignment(Pos.CENTER);
@@ -61,10 +60,11 @@ public class IMC extends Application {
 		primaryStage.show();
 		
 		SimpleDoubleProperty peso = new SimpleDoubleProperty();
-		Binding.bindBidirectional(pesoTextField.textProperty(),peso, new NumberStringConverter());
+		Bindings.bindBidirectional(pesoTextField.textProperty(),peso, new NumberStringConverter());
 		
 		SimpleDoubleProperty altura = new SimpleDoubleProperty();
-		Binding.bindBidirectional(alturaTextField.textProperty(),altura, new NumberStringConverter());
+		Bindings.bindBidirectional(alturaTextField.textProperty(),altura, new NumberStringConverter());
+		
 		
 		DoubleBinding operacion = altura.divide(100);
 		operacion=peso.divide(operacion.multiply(operacion));
